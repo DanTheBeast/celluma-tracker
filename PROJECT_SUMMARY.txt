@@ -1,0 +1,234 @@
+================================================================================
+CELLUMA TRACKER - RED LIGHT THERAPY SESSION MAPPER
+================================================================================
+
+PROJECT STRUCTURE:
+├── START_HERE.md          ← For your wife! Easy intro guide
+├── README.md              ← Complete user guide & features
+├── SETUP.md               ← Installation & troubleshooting  
+├── DEPLOYMENT.md          ← How to publish online (Vercel recommended!)
+├── QUICK_COMMANDS.md      ← Command reference
+│
+├── index.html             ← HTML entry point (don't change)
+├── package.json           ← Dependencies & scripts
+├── vite.config.js         ← Build configuration
+├── .gitignore             ← Git ignore rules
+│
+└── src/
+    ├── main.jsx           ← React entry point (don't change)
+    └── App.jsx            ← ENTIRE APP CODE (edit here for changes)
+
+================================================================================
+QUICK START FOR YOUR WIFE:
+================================================================================
+
+1. Install Node.js from https://nodejs.org/
+
+2. Open Terminal and run:
+   cd Desktop/The\ Prize/Apps/CelluMe
+   npm install
+   npm run dev
+
+3. App opens at http://localhost:5173
+
+4. Start logging red light therapy sessions!
+
+================================================================================
+KEY FEATURES:
+================================================================================
+
+✅ Track 4 devices:
+   - Celluma PRO (8 J/cm², 30 min, 16"×8" panel)
+   - Celluma POD (6 J/cm², 30 min, 4.4"×2.75" portable)
+   - Hooga Torch (22 J/cm², 3 min, 1.25" precision spot)
+   - TheraFace Glow (15 J/cm², 12 min, 5"×7" face mask)
+
+✅ Map sessions to:
+   - Front/back body views
+   - Hand palms (left/right)
+   - Face parts (ears, nose, mouth)
+
+✅ Real-time heatmap visualization:
+   - Shows cumulative J/cm² exposure
+   - Color-coded safety levels (blue→green→yellow→orange→red)
+   - Exponential decay over 72 hours (real biology!)
+
+✅ Session management:
+   - Drag to reposition
+   - Double-click to delete
+   - All data saved locally (no server needed)
+
+================================================================================
+DEPLOYMENT (GET IT ONLINE):
+================================================================================
+
+EASIEST: Use Vercel (recommended)
+1. Push code to GitHub
+2. Sign up at vercel.com
+3. Connect GitHub repo
+4. Done! Live in 30 seconds
+
+See DEPLOYMENT.md for detailed instructions.
+
+================================================================================
+FILE BREAKDOWN:
+================================================================================
+
+START_HERE.md          → For your wife (read this first!)
+README.md              → Feature documentation & usage guide
+SETUP.md               → Installation troubleshooting
+DEPLOYMENT.md          → Publishing online
+QUICK_COMMANDS.md      → Terminal commands reference
+PROJECT_SUMMARY.txt    → This file!
+
+index.html             → HTML template
+package.json           → Dependencies (React 18, Vite 5)
+vite.config.js         → Build settings
+.gitignore             → Files to exclude from git
+
+src/main.jsx           → React entry point
+src/App.jsx            → THE ENTIRE APP (48KB of code)
+
+================================================================================
+TECHNOLOGIES USED:
+================================================================================
+
+Frontend:
+  - React 18 (UI framework)
+  - Vite 5 (bundler/dev server)
+  - HTML5 Canvas (heatmap rendering)
+  - SVG (interactive shapes)
+  - localStorage (data persistence)
+
+No external dependencies for core functionality!
+
+Physics & Math:
+  - Exponential decay: Q(t) = Q₀ × e^(-t/τ)
+  - Fluence calculation: Φ = I × t / 1000
+  - Color interpolation: RGB linear gradient
+  - Geometric collision detection: Point-in-polygon tests
+
+================================================================================
+WHAT TO EDIT:
+================================================================================
+
+To modify the app, edit src/App.jsx:
+
+• Add a new device:
+  Modify DEVICES object
+  
+• Change colors:
+  Modify HEAT_STOPS array
+  
+• Adjust physics (decay time, fluence, etc):
+  Modify constants (FADE_HOURS, SATURATION_JOULES, etc)
+  
+• Add new UI elements:
+  Modify the return statement in CellumaTracker() component
+
+================================================================================
+FUTURE ENHANCEMENTS:
+================================================================================
+
+Easy to add:
+  - CSV export of session history
+  - Weekly/monthly reports
+  - Session notes/labels
+  - Dark/light theme toggle
+  - Multi-language support
+
+Medium difficulty:
+  - Multiple user profiles
+  - Backup/restore functionality
+  - Cloud sync (Firebase, etc)
+  - Mobile app version
+
+================================================================================
+DATA STORAGE:
+================================================================================
+
+All data stored in browser localStorage:
+  Key: "celluma-v18"
+  Format: JSON array of session objects
+  
+Each session contains:
+  {
+    id: timestamp,
+    device: "celluma" | "pod" | "torch" | "theraface",
+    view: "front" | "back" | "hand-left-palm" | etc,
+    x: number,           // Position X
+    y: number,           // Position Y
+    angle: 0 | 45 | 90 | 135,  // Device rotation
+    timestamp: Date.now()
+  }
+
+No server, no network calls, no privacy concerns.
+
+================================================================================
+TROUBLESHOOTING CHECKLIST:
+================================================================================
+
+Port 5173 in use?
+  → npm run dev -- --port 3000
+
+npm command not found?
+  → Install Node.js from nodejs.org
+
+Blank white page?
+  → Hard refresh: Cmd+Shift+R (Mac) or Ctrl+Shift+R (Windows)
+
+Data not saving?
+  → Check localStorage enabled in browser
+  → Not in private/incognito mode?
+  → Try different browser
+
+Build fails?
+  → npm cache clean --force
+  → rm -rf node_modules
+  → npm install
+  → npm run build
+
+================================================================================
+COMMIT HISTORY TEMPLATE:
+================================================================================
+
+Initial commit:
+  git commit -m "Initial: Celluma Tracker with 4-device support"
+
+Feature additions:
+  git commit -m "Feature: Add CSV export functionality"
+  git commit -m "Fix: Correct exponential decay calculation"
+  git commit -m "Docs: Update user guide with new features"
+
+================================================================================
+RESOURCES:
+================================================================================
+
+React: https://react.dev
+Vite: https://vitejs.dev
+JavaScript: https://mdn.org/javascript
+Canvas API: https://mdn.org/canvas
+GitHub: https://github.com
+Vercel: https://vercel.com
+
+================================================================================
+CONTACT & SUPPORT:
+================================================================================
+
+This app was created using Claude AI from Anthropic.
+Built 2026-05-10
+
+For questions:
+1. Check START_HERE.md (beginner guide)
+2. Check README.md (features & usage)
+3. Check SETUP.md (troubleshooting)
+4. Check browser console (F12) for errors
+
+================================================================================
+LICENSE:
+================================================================================
+
+Free to use, modify, and distribute.
+Medical device data from manufacturer specs (April 2026).
+
+================================================================================

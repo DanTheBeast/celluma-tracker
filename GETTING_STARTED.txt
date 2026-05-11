@@ -1,0 +1,214 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                     CELLUMA TRACKER - GETTING STARTED                      ║
+║                                                                            ║
+║                      Red Light Therapy Session Mapper                      ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+YOUR WIFE'S RED LIGHT TRACKER IS READY TO USE!
+
+═══════════════════════════════════════════════════════════════════════════
+
+WHAT YOU NEED TO DO:
+
+1. Install Node.js (ONE TIME ONLY)
+   → Go to https://nodejs.org/
+   → Download the LTS (Long Term Support) version
+   → Run the installer
+   → Takes 5 minutes
+
+2. Open Terminal/Command Prompt
+   → Mac: Cmd+Space → type "Terminal" → Enter
+   → Windows: Win+R → type "cmd" → Enter
+
+3. Navigate to the app folder
+   Copy and paste this:
+   
+   cd Desktop/The\ Prize/Apps/CelluMe
+   
+   (On Windows, adjust the path as needed)
+
+4. Run the app
+   Copy and paste:
+   
+   npm install
+   npm run dev
+   
+5. That's it! Your browser will open automatically
+   → App loads at http://localhost:5173
+   → She can start tracking immediately!
+
+═══════════════════════════════════════════════════════════════════════════
+
+WHAT'S INCLUDED:
+
+✅ Complete React app
+✅ All 4 red light devices preconfigured
+✅ Anatomical body maps (front, back, hands, face)
+✅ Real-time heatmap visualization
+✅ Session management (drag, delete, track)
+✅ Automatic data saving
+✅ Full documentation
+
+═══════════════════════════════════════════════════════════════════════════
+
+DOCUMENTATION FILES (IN ORDER):
+
+1. START_HERE.md ← Begin here! Easy intro for your wife
+2. README.md ← Complete feature guide
+3. SETUP.md ← Installation troubleshooting
+4. DEPLOYMENT.md ← How to publish online for free
+5. QUICK_COMMANDS.md ← Terminal commands reference
+
+═══════════════════════════════════════════════════════════════════════════
+
+SUPPORTED DEVICES:
+
+✓ Celluma PRO       (16"×8" flexible panel, 30 min sessions)
+✓ Celluma POD       (4.4"×2.75" portable, 30 min sessions)
+✓ Hooga Torch       (1.25" precision spot, 3 min sessions)
+✓ TheraFace Glow    (5"×7" face mask, 12 min sessions)
+
+═══════════════════════════════════════════════════════════════════════════
+
+KEY FEATURES:
+
+• Click to place sessions on anatomical maps
+• Drag to reposition
+• Double-click to delete
+• Real-time heatmap shows cumulative energy (J/cm²)
+• Color-coded: Blue (safe) → Green (optimal) → Red (overdose)
+• Sessions fade over 72 hours (realistic biology)
+• All data saved locally (no internet needed)
+
+═══════════════════════════════════════════════════════════════════════════
+
+WHEN YOU'RE DONE TESTING:
+
+To publish online for free (so she can use it from anywhere):
+→ Read DEPLOYMENT.md
+→ Use Vercel (easiest, ~5 minutes)
+→ Get a live URL to share
+
+═══════════════════════════════════════════════════════════════════════════
+
+TECHNOLOGY STACK:
+
+• React 18 (UI framework)
+• Vite 5 (build tool)
+• HTML5 Canvas (heatmap rendering)
+• SVG (interactive shapes)
+• localStorage (data persistence)
+
+Zero external dependencies for core features!
+
+═══════════════════════════════════════════════════════════════════════════
+
+PROJECT STRUCTURE:
+
+CelluMe/
+├── START_HERE.md           ← For your wife
+├── README.md               ← Full documentation
+├── SETUP.md                ← Installation help
+├── DEPLOYMENT.md           ← Publish online
+├── QUICK_COMMANDS.md       ← Command reference
+├── PROJECT_SUMMARY.txt     ← Detailed overview
+├── GETTING_STARTED.txt     ← This file!
+│
+├── index.html              ← HTML template
+├── package.json            ← Dependencies
+├── vite.config.js          ← Build config
+│
+└── src/
+    ├── main.jsx            ← React entry
+    └── App.jsx             ← Entire app (48KB)
+
+═══════════════════════════════════════════════════════════════════════════
+
+CUSTOMIZATION:
+
+Want to modify the app? Edit src/App.jsx:
+
+• Add devices → Edit DEVICES object
+• Change colors → Edit HEAT_STOPS
+• Adjust physics → Edit constants (FADE_HOURS, etc)
+• Add UI → Edit return statement in CellumaTracker()
+
+═══════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+
+"npm: command not found"
+→ Install Node.js from nodejs.org
+
+"Port 5173 in use"
+→ Run: npm run dev -- --port 3000
+
+"Blank white page"
+→ Hard refresh: Cmd+Shift+R (Mac) or Ctrl+Shift+R (Windows)
+
+"Data not saving"
+→ Make sure not in private/incognito mode
+→ Enable localStorage in browser settings
+
+═══════════════════════════════════════════════════════════════════════════
+
+QUICK COMMAND REFERENCE:
+
+Start app:          npm run dev
+Stop app:           Ctrl+C
+Create build:       npm run build
+Deploy:             Follow DEPLOYMENT.md
+
+═══════════════════════════════════════════════════════════════════════════
+
+DATA & PRIVACY:
+
+✅ All data stored in browser localStorage
+✅ No server, no internet required
+✅ No tracking or analytics
+✅ No personal data sent anywhere
+✅ Works completely offline
+
+═══════════════════════════════════════════════════════════════════════════
+
+NEXT STEPS:
+
+1. ✓ Install Node.js
+2. ✓ npm install && npm run dev
+3. ✓ Test the app locally
+4. → Give it to your wife!
+5. → (Optional) Deploy online using DEPLOYMENT.md
+
+═══════════════════════════════════════════════════════════════════════════
+
+SUPPORT:
+
+Having issues?
+
+1. Check START_HERE.md (beginner guide)
+2. Check README.md (features)
+3. Check SETUP.md (troubleshooting)
+4. Check browser console: F12 → Console tab
+
+═══════════════════════════════════════════════════════════════════════════
+
+THAT'S IT!
+
+Your wife's red light therapy tracker is ready to use. Just follow the
+4 steps above and she'll be tracking her sessions in minutes.
+
+The app is professional, polished, and completely functional. All the
+hard work is done. You just need to:
+
+1. Install Node (2 minutes)
+2. Run npm install (2 minutes)
+3. Run npm run dev (1 second)
+
+Enjoy! 🔴✨
+
+═══════════════════════════════════════════════════════════════════════════
+
+Built with ❤️ using React, Vite, and Claude AI
+May 2026
