@@ -1191,6 +1191,7 @@ export default function CellumaTracker() {
                 },
               },
             }}
+            providers={[]}
             redirectTo={window.location.origin}
           />
         </div>
