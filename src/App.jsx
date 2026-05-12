@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -1072,24 +1074,7 @@ export default function CellumaTracker() {
     }
   }, [user]);
 
-  // Handle Google login
-  const handleGoogleLogin = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/`,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          },
-        },
-      });
-      if (error) throw error;
-    } catch (error) {
-      console.error("Error logging in:", error);
-    }
-  };
+
 
   // Handle logout
   const handleLogout = async () => {
@@ -1161,34 +1146,35 @@ export default function CellumaTracker() {
         display: "flex", flexDirection: "column", alignItems: "center",
         justifyContent: "center", padding: "20px 16px",
       }}>
-        <div style={{ textAlign: "center", maxWidth: 400 }}>
+        <div style={{ width: "100%", maxWidth: 400 }}>
           <div style={{
             fontSize: 24, fontWeight: "bold", letterSpacing: 3,
             background: "linear-gradient(90deg, #1d4877, #1b8a5a, #fbb021, #f68838, #ee3e32)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             marginBottom: 30,
+            textAlign: "center",
           }}>
             LED THERAPY MAP
           </div>
-          <p style={{ fontSize: 14, marginBottom: 30, color: "#7aa0bb" }}>
+          <p style={{ fontSize: 14, marginBottom: 30, color: "#7aa0bb", textAlign: "center" }}>
             Track your red light therapy sessions across multiple devices
           </p>
-          <button
-            onClick={handleGoogleLogin}
-            style={{
-              padding: "12px 24px",
-              background: "linear-gradient(135deg, #4285f4, #357ae8)",
-              border: "none",
-              borderRadius: 6,
-              color: "#fff",
-              fontSize: 14,
-              fontWeight: "bold",
-              cursor: "pointer",
-              fontFamily: "'Courier New', monospace",
+          <Auth
+            supabaseClient={supabase}
+            appearance={{
+              theme: ThemeSupa,
+              variables: {
+                default: {
+                  colors: {
+                    brand: '#4285f4',
+                    brandAccent: '#357ae8',
+                  },
+                },
+              },
             }}
-          >
-            Sign in with Google
-          </button>
+            providers={['google']}
+            redirectTo={window.location.origin}
+          />
         </div>
       </div>
     );
