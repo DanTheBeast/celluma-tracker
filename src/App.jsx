@@ -1018,7 +1018,7 @@ export default function CellumaTracker() {
 
     checkAuth();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChanged((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null);
       if (session?.user) {
         fetchSessions(session.user.id);
