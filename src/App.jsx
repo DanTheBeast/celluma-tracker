@@ -1,4 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
 const BODY_IMG = "data:image/jpeg;base64,/9j/4RH0RXhpZgAATU0AKgAAAAgABgESAAMAAAABAAEAAAEaAAUA";
 const HAND_IMG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQF";
@@ -187,7 +193,7 @@ function renderHeatmap(sessions, view) {
       const isMirrored = s.view.startsWith("hand-left-");
       const proj = projectHandClickToBody(s.view, cx, cy, isMirrored);
       if (!proj || proj.bodyView !== view) continue;
-      const decay = decayFactor(s.timestamp);
+      const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
       if (decay <= 0) continue;
       const sessionJoules = DEVICES[s.device]?.fluencePerSession || 0;
       handShadows.push({ x: proj.x, y: proj.y, joules: decay * sessionJoules });
@@ -200,7 +206,7 @@ function renderHeatmap(sessions, view) {
       for (const s of sessions) {
         const sView = s.view || s.side;
         if (sView !== view) continue;
-        const decay = decayFactor(s.timestamp);
+        const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
         if (decay > 0 && sessionContains(s, x, y)) {
           const sessionJoules = DEVICES[s.device]?.fluencePerSession || 0;
           totalJoules += decay * sessionJoules;
@@ -326,7 +332,7 @@ function BodyPanel({ side, sessions, onLog, onMoveSession, onDeleteSession, pane
         <svg style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none" }}>
           {mySessions.slice(-50).map((s) => {
             const sDev = DEVICES[s.device];
-            const decay = decayFactor(s.timestamp);
+            const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
             const isActive = s.id === draggingId;
             const stroke = isActive ? "rgba(255,255,255,1)" : `rgba(255,255,255,${(decay * 0.5).toFixed(2)})`;
             const sw = isActive ? 2 : 1;
@@ -389,7 +395,7 @@ function BodyPanel({ side, sessions, onLog, onMoveSession, onDeleteSession, pane
             const sDev = DEVICES[s.device];
             const cx = sDev.shape === "rect" ? s.x + sDev.short / 2 : s.x;
             const cy = sDev.shape === "rect" ? s.y + sDev.long / 2 : s.y;
-            const decay = decayFactor(s.timestamp);
+            const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
             if (decay <= 0) return null;
             const isActive = s.id === draggingId;
             const baseR = 2.5;
@@ -550,7 +556,7 @@ function HandPanel({ handSide, sessions, onLog, onMoveSession, onDeleteSession, 
         let totalJoules = 0;
         for (const s of sessions) {
           if ((s.view || s.side) !== view) continue;
-          const decay = decayFactor(s.timestamp);
+          const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
           if (decay > 0 && sessionContains(s, x, y)) {
             const sj = DEVICES[s.device]?.fluencePerSession || 0;
             totalJoules += decay * sj;
@@ -666,7 +672,7 @@ function HandPanel({ handSide, sessions, onLog, onMoveSession, onDeleteSession, 
           style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}>
           {mySessions.slice(-50).map(s => {
             const sDev = scaledDeviceDims(DEVICES[s.device], view);
-            const decay = decayFactor(s.timestamp);
+            const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
             const isActive = s.id === draggingId;
             const stroke = isActive ? "rgba(255,255,255,1)" : `rgba(255,255,255,${(decay*0.5).toFixed(2)})`;
             const sw = isActive ? 1.5 : 0.9;
@@ -715,7 +721,7 @@ function HandPanel({ handSide, sessions, onLog, onMoveSession, onDeleteSession, 
             const sDev = scaledDeviceDims(DEVICES[s.device], view);
             const cx = sDev.shape === "rect" ? s.x + sDev.short/2 : s.x;
             const cy = sDev.shape === "rect" ? s.y + sDev.long/2 : s.y;
-            const decay = decayFactor(s.timestamp);
+            const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
             if (decay <= 0) return null;
             const isActive = s.id === draggingId;
             const baseR = 2.5;
@@ -760,7 +766,7 @@ function FacePartPanel({ imgSrc, viewKey, label, mirror, aspectW, aspectH, sessi
         let totalJoules = 0;
         for (const s of sessions) {
           if ((s.view || s.side) !== viewKey) continue;
-          const decay = decayFactor(s.timestamp);
+          const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
           if (decay > 0 && sessionContains(s, x, y)) {
             const sj = DEVICES[s.device]?.fluencePerSession || 0;
             totalJoules += decay * sj;
@@ -876,7 +882,7 @@ function FacePartPanel({ imgSrc, viewKey, label, mirror, aspectW, aspectH, sessi
           style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}>
           {mySessions.slice(-50).map(s => {
             const sDev = scaledDeviceDims(DEVICES[s.device], "hand-fake");
-            const decay = decayFactor(s.timestamp);
+            const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
             const isActive = s.id === draggingId;
             const stroke = isActive ? "rgba(0,0,0,1)" : `rgba(0,0,0,${(decay*0.6).toFixed(2)})`;
             const sw = isActive ? 1.5 : 0.9;
@@ -925,7 +931,7 @@ function FacePartPanel({ imgSrc, viewKey, label, mirror, aspectW, aspectH, sessi
             const sDev = scaledDeviceDims(DEVICES[s.device], "hand-fake");
             const cx = sDev.shape === "rect" ? s.x + sDev.short/2 : s.x;
             const cy = sDev.shape === "rect" ? s.y + sDev.long/2 : s.y;
-            const decay = decayFactor(s.timestamp);
+            const decay = decayFactor(new Date(s.created_at || s.timestamp).getTime());
             if (decay <= 0) return null;
             const isActive = s.id === draggingId;
             const baseR = 2.5;
@@ -991,29 +997,204 @@ function HeatLegend() {
 }
 
 export default function CellumaTracker() {
-  const [sessions, setSessions] = useState(() => {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch { return []; }
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [sessions, setSessions] = useState([]);
   const [panelAngle, setPanelAngle] = useState(0);
   const [draggingId, setDraggingId] = useState(null);
   const [activeDevice, setActiveDevice] = useState("celluma");
 
+  // Check auth status on mount and subscribe to changes
   useEffect(() => {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions)); } catch {}
-  }, [sessions]);
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+      setLoading(false);
 
-  const logSession = useCallback((s) => setSessions(p => [...p, s]), []);
-  const moveSession = useCallback((id, newX, newY) => {
-    setSessions(p => p.map(s => s.id === id ? { ...s, x: newX, y: newY } : s));
+      if (session?.user) {
+        fetchSessions(session.user.id);
+      }
+    };
+
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChanged((event, session) => {
+      setUser(session?.user || null);
+      if (session?.user) {
+        fetchSessions(session.user.id);
+      } else {
+        setSessions([]);
+      }
+    });
+
+    return () => subscription?.unsubscribe();
   }, []);
-  const deleteSession = useCallback((id) => {
-    setSessions(p => p.filter(s => s.id !== id));
-  }, []);
+
+  // Fetch sessions from Supabase
+  const fetchSessions = async (userId) => {
+    try {
+      const { data, error } = await supabase
+        .from("sessions")
+        .select("*")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      setSessions(data || []);
+    } catch (error) {
+      console.error("Error fetching sessions:", error);
+    }
+  };
+
+  // Save session to Supabase
+  const addSession = useCallback(async (sessionData) => {
+    if (!user) return;
+    try {
+      const { data, error } = await supabase
+        .from("sessions")
+        .insert([{
+          user_id: user.id,
+          device: sessionData.device,
+          body_part: sessionData.view || sessionData.side || "unknown",
+          x: sessionData.x,
+          y: sessionData.y,
+          angle: sessionData.angle,
+          duration_minutes: sessionData.duration || 0,
+        }])
+        .select();
+
+      if (error) throw error;
+      if (data) {
+        setSessions(p => [data[0], ...p]);
+      }
+    } catch (error) {
+      console.error("Error saving session:", error);
+    }
+  }, [user]);
+
+  // Handle Google login
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin,
+        },
+      });
+      if (error) throw error;
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
+
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      setSessions([]);
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  const logSession = useCallback((s) => {
+    addSession(s);
+  }, [addSession]);
+
+  const moveSession = useCallback(async (id, newX, newY) => {
+    if (!user) return;
+    try {
+      const { error } = await supabase
+        .from("sessions")
+        .update({ x: newX, y: newY })
+        .eq("id", id)
+        .eq("user_id", user.id);
+
+      if (error) throw error;
+      setSessions(p => p.map(s => s.id === id ? { ...s, x: newX, y: newY } : s));
+    } catch (error) {
+      console.error("Error updating session:", error);
+    }
+  }, [user]);
+
+  const deleteSession = useCallback(async (id) => {
+    if (!user) return;
+    try {
+      const { error } = await supabase
+        .from("sessions")
+        .delete()
+        .eq("id", id)
+        .eq("user_id", user.id);
+
+      if (error) throw error;
+      setSessions(p => p.filter(s => s.id !== id));
+    } catch (error) {
+      console.error("Error deleting session:", error);
+    }
+  }, [user]);
+
   const onDragStart = useCallback((id) => setDraggingId(id), []);
   const onDragEnd = useCallback(() => setDraggingId(null), []);
 
+  if (loading) {
+    return (
+      <div style={{
+        minHeight: "100vh", background: "#09111e",
+        color: "#cce0f0", fontFamily: "'Courier New', monospace",
+        display: "flex", flexDirection: "column", alignItems: "center",
+        justifyContent: "center", padding: "20px 16px",
+      }}>
+        <div style={{ fontSize: 16 }}>Loading...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div style={{
+        minHeight: "100vh", background: "#09111e",
+        color: "#cce0f0", fontFamily: "'Courier New', monospace",
+        display: "flex", flexDirection: "column", alignItems: "center",
+        justifyContent: "center", padding: "20px 16px",
+      }}>
+        <div style={{ textAlign: "center", maxWidth: 400 }}>
+          <div style={{
+            fontSize: 24, fontWeight: "bold", letterSpacing: 3,
+            background: "linear-gradient(90deg, #1d4877, #1b8a5a, #fbb021, #f68838, #ee3e32)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            marginBottom: 30,
+          }}>
+            LED THERAPY MAP
+          </div>
+          <p style={{ fontSize: 14, marginBottom: 30, color: "#7aa0bb" }}>
+            Track your red light therapy sessions across multiple devices
+          </p>
+          <button
+            onClick={handleGoogleLogin}
+            style={{
+              padding: "12px 24px",
+              background: "linear-gradient(135deg, #4285f4, #357ae8)",
+              border: "none",
+              borderRadius: 6,
+              color: "#fff",
+              fontSize: 14,
+              fontWeight: "bold",
+              cursor: "pointer",
+              fontFamily: "'Courier New', monospace",
+            }}
+          >
+            Sign in with Google
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const total = sessions.length;
-  const weekly = sessions.filter(s => Date.now() - s.timestamp < 7 * 86400000).length;
+  const weekly = sessions.filter(s => {
+    const createdAt = new Date(s.created_at).getTime();
+    return Date.now() - createdAt < 7 * 86400000;
+  }).length;
   const dev = DEVICES[activeDevice];
   const sharedBodyProps = { sessions, onLog: logSession, onMoveSession: moveSession, onDeleteSession: deleteSession, panelAngle, draggingId, onDragStart, onDragEnd, activeDevice };
 
@@ -1023,7 +1204,26 @@ export default function CellumaTracker() {
       color: "#cce0f0", fontFamily: "'Courier New', monospace",
       display: "flex", flexDirection: "column", alignItems: "center",
       padding: "20px 16px 48px",
+      position: "relative",
     }}>
+      <button
+        onClick={handleLogout}
+        style={{
+          position: "absolute",
+          top: 20,
+          right: 20,
+          padding: "7px 14px",
+          background: "rgba(160,60,60,0.2)",
+          border: "1px solid rgba(160,60,60,0.4)",
+          borderRadius: 6,
+          color: "#ff8080",
+          cursor: "pointer",
+          fontFamily: "monospace",
+          fontSize: 11,
+        }}
+      >
+        LOGOUT
+      </button>
       <div style={{ textAlign: "center", marginBottom: 14 }}>
         <div style={{ fontSize: 9, letterSpacing: 5, color: "#2a6080", marginBottom: 4 }}>GLOW</div>
         <div style={{
@@ -1107,11 +1307,24 @@ export default function CellumaTracker() {
       <HeatLegend />
 
       <div style={{ display: "flex", gap: 10, marginBottom: 18 }}>
-        <button onClick={() => setSessions(p => p.filter(s => Date.now() - s.timestamp < FADE_HOURS * 3600000))}
+        <button onClick={async () => {
+          if (!user) return;
+          const fadeCutoff = Date.now() - FADE_HOURS * 3600000;
+          const sessionsToDelete = sessions.filter(s => new Date(s.created_at).getTime() < fadeCutoff);
+          for (const session of sessionsToDelete) {
+            await deleteSession(session.id);
+          }
+        }}
           style={{ padding: "7px 14px", background: "transparent", border: "1px solid rgba(0,100,150,0.5)", borderRadius: 6, color: "#7aa0bb", cursor: "pointer", fontFamily: "monospace" }}>
           CLEAR FADED
         </button>
-        <button onClick={() => { if (confirm("Clear all?")) setSessions([]); }}
+        <button onClick={async () => {
+          if (confirm("Clear all?") && user) {
+            for (const session of sessions) {
+              await deleteSession(session.id);
+            }
+          }
+        }}
           style={{ padding: "7px 14px", background: "transparent", border: "1px solid rgba(160,60,60,0.4)", borderRadius: 6, color: "#ff8080", cursor: "pointer", fontFamily: "monospace" }}>
           CLEAR ALL
         </button>
@@ -1124,13 +1337,14 @@ export default function CellumaTracker() {
             <span style={{ color: "#3a6a8a", textTransform: "none", letterSpacing: 0 }}> tap × to remove</span>
           </div>
           {[...sessions].reverse().slice(0, 10).map((s) => {
-            const hrs = (Date.now() - s.timestamp) / 3600000;
+            const createdAt = new Date(s.created_at).getTime();
+            const hrs = (Date.now() - createdAt) / 3600000;
             const age = hrs < 1 ? "just now" : hrs < 24 ? `${Math.floor(hrs)}h ago` : `${Math.floor(hrs / 24)}d ago`;
             const sDev = DEVICES[s.device];
             return (
               <div key={s.id} style={{ display: "flex", alignItems: "center", padding: "3px 0" }}>
                 <span style={{ color: "#cce0f0", flex: 1, fontWeight: "bold" }}>{sDev.name}</span>
-                <span style={{ width: 110, fontSize: 8 }}>{((s.view || s.side) || "").toUpperCase().replace("-", " ")}</span>
+                <span style={{ width: 110, fontSize: 8 }}>{(s.body_part || "").toUpperCase().replace("-", " ")}</span>
                 <span style={{ color: "#4a8aaa", width: 60, textAlign: "right" }}>{age}</span>
                 <button
                   onClick={() => deleteSession(s.id)}
