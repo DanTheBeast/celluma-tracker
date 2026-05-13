@@ -8,11 +8,11 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-const BODY_IMG = "data:image/jpeg;base64,/9j/4RH0RXhpZgAATU0AKgAAAAgABgESAAMAAAABAAEAAAEaAAUA";
-const HAND_IMG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQF";
-const MOUTH_IMG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQU";
-const EAR_IMG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGB";
-const NOSE_IMG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUG";
+const BODY_IMG = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjEwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIxMDUiIGN5PSI2MCIgcj0iMzUiIGZpbGw9IiNlOGQ1YzQiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHJlY3QgeD0iODUiIHk9Ijk1IiB3aWR0aD0iNDAiIGhlaWdodD0iODAiIGZpbGw9IiNlOGQ1YzQiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIiByeD0iOCIvPgogIDxyZWN0IHg9IjIwIiB5PSIxMTAiIHdpZHRoPSI2NSIgaGVpZ2h0PSIyMCIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiIHJ4PSIxMCIvPgogIDxyZWN0IHg9IjEyNSIgeT0iMTEwIiB3aWR0aD0iNjUiIGhlaWdodD0iMjAiIGZpbGw9IiNlOGQ1YzQiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIiByeD0iMTAiLz4KICA8Y2lyY2xlIGN4PSIxNSIgY3k9IjEyMCIgcj0iMTIiIGZpbGw9IiNlOGQ1YzQiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGNpcmNsZSBjeD0iMTk1IiBjeT0iMTIwIiByPSIxMiIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8ZWxsaXBzZSBjeD0iMTA1IiBjeT0iMTU1IiByeD0iMjUiIHJ5PSIzNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2NjIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8ZWxsaXBzZSBjeD0iMTA1IiBjeT0iMTg1IiByeD0iMjgiIHJ5PSIyNSIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cmVjdCB4PSI4MCIgeT0iMjEwIiB3aWR0aD0iMTUiIGhlaWdodD0iMTAwIiBmaWxsPSIjZThkNWM0IiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMSIgcng9IjciLz4KICA8cmVjdCB4PSIxMTUiIHk9IjIxMCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiIHJ4PSI3Ii8+CiAgPHJlY3QgeD0iNzUiIHk9IjMxMCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjE1IiBmaWxsPSIjZThkNWM0IiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMSIgcng9IjMiLz4KICA8cmVjdCB4PSIxMTAiIHk9IjMxMCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjE1IiBmaWxsPSIjZThkNWM0IiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMSIgcng9IjMiLz4KPC9zdmc+";
+const HAND_IMG = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjEwIDM4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZWxsaXBzZSBjeD0iMTA1IiBjeT0iMjAwIiByeD0iNDUiIHJ5PSI5MCIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8ZWxsaXBzZSBjeD0iNjUiIGN5PSIxNzAiIHJ4PSIxOCIgcnk9IjM1IiBmaWxsPSIjZThkNWM0IiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMSIgdHJhbnNmb3JtPSJyb3RhdGUoLTM1IDY1IDE3MCkiLz4KICA8cmVjdCB4PSIzMCIgeT0iMjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNlOGQ1YzQiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIiByeD0iOCIvPgogIDxyZWN0IHg9IjcwIiB5PSIxMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjEzMCIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiIHJ4PSI4Ii8+CiAgPHJlY3QgeD0iMTI0IiB5PSIxMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjEzMCIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiIHJ4PSI4Ii8+CiAgPHJlY3QgeD0iMTY0IiB5PSIyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiIHJ4PSI4Ii8+CiAgPGVsbGlwc2UgY3g9IjEwNSIgY3k9IjM0MCIgcng9IjM1IiByeT0iMjUiIGZpbGw9IiNlOGQ1YzQiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjwvc3ZnPg==";
+const MOUTH_IMG = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjEwIDI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNIDUwIDgwIFEgMTA1IDEyMCAxNjAgODAgUSAxMDUgMTAwIDUwIDgwIiBmaWxsPSIjZDQ5NDlhIiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxwYXRoIGQ9Ik0gNTAgODAgUSAxMDUgMTQwIDE2MCA4MCBRIDEwNSAxNjAgNTAgODAiIGZpbGw9IiNlOGM0YzgiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjwvc3ZnPg==";
+const EAR_IMG = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTIwIDE3MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZWxsaXBzZSBjeD0iNjAiIGN5PSI2MCIgcng9IjM1IiByeT0iNTAiIGZpbGw9IiNlOGQ1YzQiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGVsbGlwc2UgY3g9IjYwIiBjeT0iNjAiIHJ4PSIyNSIgcnk9IjM4IiBmaWxsPSIjZjVlNmQzIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxlbGxpcHNlIGN4PSI2MCIgY3k9IjUwIiByeD0iMTIiIHJ5PSIxOCIgZmlsbD0iI2Q0YTU3NCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjAuNSIvPgo8L3N2Zz4=";
+const NOSE_IMG = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQwIDE5MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cG9seWdvbiBwb2ludHM9IjcwLDIwIDU1LDYwIDg1LDYwIiBmaWxsPSIjZThkNWM0IiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjkwIiByeD0iMjIiIHJ5PSIyNSIgZmlsbD0iI2U4ZDVjNCIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8Y2lyY2xlIGN4PSI1NSIgY3k9Ijk1IiByPSI2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxjaXJjbGUgY3g9Ijg1IiBjeT0iOTUiIHI9IjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjwvc3ZnPg==";
 
 // 72-hour exponential decay window. Acute mitochondrial response peaks 3-6h
 // post-treatment and largely fades by 24-48h, gone by ~72h. Half-life ~18h
@@ -301,7 +301,7 @@ function BodyPanel({ side, sessions, onLog, onMoveSession, onDeleteSession, pane
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-      <div style={{ fontSize: 10, letterSpacing: 3, color: "#6aaccc", fontFamily: "monospace" }}>
+      <div style={{ fontSize: 10, letterSpacing: 3, color: "#0066cc", fontFamily: "monospace" }}>
         {side === "front" ? "ANTERIOR" : "POSTERIOR"}
       </div>
       <div
@@ -439,7 +439,7 @@ function BodyPanel({ side, sessions, onLog, onMoveSession, onDeleteSession, pane
           })}
         </svg>
       </div>
-      <div style={{ fontSize: 9, color: "#2a5a70", letterSpacing: 1, fontFamily: "monospace" }}>
+      <div style={{ fontSize: 9, color: "#4a4a4a", letterSpacing: 1, fontFamily: "monospace" }}>
         click anywhere to place · drag dot to adjust · double-click dot to remove
       </div>
     </div>
@@ -451,11 +451,11 @@ function DeviceSelector({ active, onChange }) {
     <div style={{
       display: "flex", flexDirection: "column", gap: 6,
       padding: "10px 12px",
-      background: "rgba(0,40,70,0.35)",
-      border: "1px solid rgba(0,140,190,0.2)",
+      background: "rgba(0,0,0,0.05)",
+      border: "1px solid rgba(0,0,0,0.1)",
       borderRadius: 10, width: "100%", maxWidth: 520, marginBottom: 8,
     }}>
-      <div style={{ fontSize: 9, letterSpacing: 2, color: "#5a9abf", fontFamily: "monospace" }}>
+      <div style={{ fontSize: 9, letterSpacing: 2, color: "#0066cc", fontFamily: "monospace" }}>
         DEVICE
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
@@ -464,12 +464,12 @@ function DeviceSelector({ active, onChange }) {
           return (
             <button key={key} onClick={() => onChange(key)} style={{
               padding: "8px 10px",
-              background: isActive ? "rgba(0,200,255,0.18)" : "rgba(0,30,50,0.4)",
-              border: `1.5px solid ${isActive ? "#00c8ff" : "rgba(0,80,120,0.3)"}`,
+              background: isActive ? "rgba(0,102,204,0.12)" : "rgba(0,0,0,0.1)",
+              border: `1.5px solid ${isActive ? "#0066cc" : "rgba(0,0,0,0.15)"}`,
               borderRadius: 6, cursor: "pointer",
-              color: isActive ? "#00c8ff" : "#7aa0bb",
+              color: isActive ? "#0066cc" : "#5a5a5a",
               fontFamily: "monospace", textAlign: "left",
-              boxShadow: isActive ? "0 0 10px rgba(0,200,255,0.25)" : "none",
+              boxShadow: isActive ? "0 0 10px rgba(0,102,204,0.15)" : "none",
               transition: "all 0.15s",
             }}>
               <div style={{ fontSize: 12, fontWeight: "bold", letterSpacing: 0.5 }}>
@@ -498,23 +498,23 @@ function RotationControl({ angle, onChange, disabled }) {
       display: "flex", flexDirection: "column", alignItems: "center",
       gap: 6,
       padding: "8px 12px",
-      background: "rgba(0,50,80,0.25)",
-      border: "1px solid rgba(0,140,190,0.18)",
+      background: "rgba(0,0,0,0.08)",
+      border: "1px solid rgba(0,0,0,0.1)",
       borderRadius: 10,
       width: "100%", maxWidth: 520,
       marginBottom: 16,
       opacity: disabled ? 0.4 : 1,
     }}>
-      <div style={{ fontSize: 9, letterSpacing: 2, color: "#5a9abf", fontFamily: "monospace" }}>
+      <div style={{ fontSize: 9, letterSpacing: 2, color: "#0066cc", fontFamily: "monospace" }}>
         ORIENTATION
       </div>
       <div style={{ display: "flex", justifyContent: "center", gap: 8, width: "100%" }}>
         {options.map(({ a, sym, label }) => (
           <button key={a} disabled={disabled} onClick={() => onChange(a)} style={{
             flex: "1 1 0", padding: "8px 4px",
-            background: angle === a ? "rgba(0,150,200,0.3)" : "transparent",
-            border: `1px solid ${angle === a ? "rgba(0,200,255,0.6)" : "rgba(0,100,150,0.25)"}`,
-            color: angle === a ? "#00c8ff" : "#5a8aaa",
+            background: angle === a ? "rgba(0,102,204,0.2)" : "transparent",
+            border: `1px solid ${angle === a ? "rgba(0,102,204,0.4)" : "rgba(0,0,0,0.1)"}`,
+            color: angle === a ? "#0066cc" : "#0066cc",
             borderRadius: 6, cursor: disabled ? "not-allowed" : "pointer",
             fontFamily: "monospace",
             display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
@@ -638,7 +638,7 @@ function HandPanel({ handSide, sessions, onLog, onMoveSession, onDeleteSession, 
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-      <div style={{ fontSize: 10, letterSpacing: 3, color: "#6aaccc", fontFamily: "monospace" }}>
+      <div style={{ fontSize: 10, letterSpacing: 3, color: "#0066cc", fontFamily: "monospace" }}>
         {handSide.toUpperCase()} HAND · PALM
       </div>
       <div
@@ -848,7 +848,7 @@ function FacePartPanel({ imgSrc, viewKey, label, mirror, aspectW, aspectH, sessi
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-      <div style={{ fontSize: 10, letterSpacing: 3, color: "#6aaccc", fontFamily: "monospace" }}>
+      <div style={{ fontSize: 10, letterSpacing: 3, color: "#0066cc", fontFamily: "monospace" }}>
         {label}
       </div>
       <div
@@ -965,7 +965,7 @@ function HeatLegend() {
       display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
       marginBottom: 14,
     }}>
-      <div style={{ fontSize: 9, letterSpacing: 2, color: "#5a9abf", fontFamily: "monospace" }}>
+      <div style={{ fontSize: 9, letterSpacing: 2, color: "#0066cc", fontFamily: "monospace" }}>
         CUMULATIVE DOSE (J/cm²)
       </div>
       <div style={{ position: "relative", width: 280 }}>
@@ -977,11 +977,11 @@ function HeatLegend() {
             rgb(${HEAT_STOPS[2].rgb.join(",")}),
             rgb(${HEAT_STOPS[3].rgb.join(",")}),
             rgb(${HEAT_STOPS[4].rgb.join(",")}))`,
-          border: "1px solid rgba(0,80,120,0.4)",
+          border: "1px solid rgba(0,0,0,0.2)",
         }} />
         <div style={{
           display: "flex", justifyContent: "space-between",
-          fontSize: 8, color: "#2a6080", letterSpacing: 1,
+           fontSize: 8, color: "#666666", letterSpacing: 1,
           marginTop: 2,
         }}>
           <span>0</span>
@@ -991,7 +991,7 @@ function HeatLegend() {
           <span>30+</span>
         </div>
       </div>
-      <div style={{ fontSize: 8, color: "#2a6080", letterSpacing: 1, marginTop: 2 }}>
+       <div style={{ fontSize: 8, color: "#666666", letterSpacing: 1, marginTop: 2 }}>
         green = therapeutic sweet spot · red = over-stimulated
       </div>
     </div>
@@ -1125,11 +1125,11 @@ export default function CellumaTracker() {
   const onDragStart = useCallback((id) => setDraggingId(id), []);
   const onDragEnd = useCallback(() => setDraggingId(null), []);
 
-  if (loading) {
+   if (loading) {
     return (
       <div style={{
-        minHeight: "100vh", background: "#09111e",
-        color: "#cce0f0", fontFamily: "'Courier New', monospace",
+        minHeight: "100vh", background: "#ffffff",
+        color: "#1a1a1a", fontFamily: "'Courier New', monospace",
         display: "flex", flexDirection: "column", alignItems: "center",
         justifyContent: "center", padding: "20px 16px",
       }}>
@@ -1138,11 +1138,11 @@ export default function CellumaTracker() {
     );
   }
 
-  if (!user) {
+   if (!user) {
     return (
       <div style={{
-        minHeight: "100vh", background: "#09111e",
-        color: "#cce0f0", fontFamily: "'Courier New', monospace",
+        minHeight: "100vh", background: "#ffffff",
+        color: "#1a1a1a", fontFamily: "'Courier New', monospace",
         display: "flex", flexDirection: "column", alignItems: "center",
         justifyContent: "center", padding: "20px 16px",
       }}>
@@ -1156,7 +1156,7 @@ export default function CellumaTracker() {
           }}>
             LED THERAPY MAP
           </div>
-          <p style={{ fontSize: 14, marginBottom: 30, color: "#7aa0bb", textAlign: "center" }}>
+          <p style={{ fontSize: 14, marginBottom: 30, color: "#5a5a5a", textAlign: "center" }}>
             Track your red light therapy sessions across multiple devices
           </p>
           <Auth
@@ -1166,19 +1166,19 @@ export default function CellumaTracker() {
               variables: {
                 default: {
                   colors: {
-                    brand: '#4285f4',
-                    brandAccent: '#357ae8',
+                    brand: '#0066cc',
+                    brandAccent: '#0052a3',
                     brandButtonText: 'white',
-                    defaultButtonBackground: '#09111e',
-                    defaultButtonBorder: '#4a8aaa',
-                    defaultButtonText: '#cce0f0',
-                    inputBackground: '#0a1218',
-                    inputBorder: '#4a8aaa',
-                    inputBorderFocus: '#7aa0bb',
-                    inputBorderHover: '#5a9abf',
-                    inputLabelText: '#cce0f0',
-                    inputPlaceholder: '#7aa0bb',
-                    inputText: '#cce0f0',
+                    defaultButtonBackground: '#ffffff',
+                    defaultButtonBorder: '#cccccc',
+                    defaultButtonText: '#1a1a1a',
+                    inputBackground: '#f5f5f5',
+                    inputBorder: '#cccccc',
+                    inputBorderFocus: '#999999',
+                    inputBorderHover: '#999999',
+                    inputLabelText: '#1a1a1a',
+                    inputPlaceholder: '#999999',
+                    inputText: '#1a1a1a',
                   },
                   borderWidths: {
                     buttonBorderWidth: '1px',
@@ -1207,10 +1207,10 @@ export default function CellumaTracker() {
   const dev = DEVICES[activeDevice];
   const sharedBodyProps = { sessions, onLog: logSession, onMoveSession: moveSession, onDeleteSession: deleteSession, panelAngle, draggingId, onDragStart, onDragEnd, activeDevice };
 
-  return (
+   return (
     <div style={{
-      minHeight: "100vh", background: "#09111e",
-      color: "#cce0f0", fontFamily: "'Courier New', monospace",
+      minHeight: "100vh", background: "#ffffff",
+      color: "#1a1a1a", fontFamily: "'Courier New', monospace",
       display: "flex", flexDirection: "column", alignItems: "center",
       padding: "20px 16px 48px",
       position: "relative",
@@ -1222,10 +1222,10 @@ export default function CellumaTracker() {
           top: 20,
           right: 20,
           padding: "7px 14px",
-          background: "rgba(160,60,60,0.2)",
-          border: "1px solid rgba(160,60,60,0.4)",
+          background: "rgba(200,100,100,0.15)",
+          border: "1px solid rgba(200,100,100,0.3)",
           borderRadius: 6,
-          color: "#ff8080",
+          color: "#cc3333",
           cursor: "pointer",
           fontFamily: "monospace",
           fontSize: 11,
@@ -1234,24 +1234,24 @@ export default function CellumaTracker() {
         LOGOUT
       </button>
       <div style={{ textAlign: "center", marginBottom: 14 }}>
-        <div style={{ fontSize: 9, letterSpacing: 5, color: "#2a6080", marginBottom: 4 }}>GLOW</div>
+        <div style={{ fontSize: 9, letterSpacing: 5, color: "#666666", marginBottom: 4 }}>GLOW</div>
         <div style={{
           fontSize: 20, fontWeight: "bold", letterSpacing: 3,
           background: "linear-gradient(90deg, #1d4877, #1b8a5a, #fbb021, #f68838, #ee3e32)",
           WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
         }}>LED THERAPY MAP</div>
-        <div style={{ fontSize: 9, color: "#2a6080", marginTop: 3, letterSpacing: 2 }}>MULTI-DEVICE TRACKER</div>
+        <div style={{ fontSize: 9, color: "#666666", marginTop: 3, letterSpacing: 2 }}>MULTI-DEVICE TRACKER</div>
       </div>
 
       <div style={{
         display: "flex", gap: 18, marginBottom: 12,
         padding: "8px 18px",
-        background: "rgba(0,60,100,0.2)", borderRadius: 8, border: "1px solid rgba(0,100,160,0.3)",
+        background: "rgba(0,0,0,0.08)", borderRadius: 8, border: "1px solid rgba(0,0,0,0.1)",
       }}>
-        {[["TOTAL", total], ["THIS WEEK", weekly], ["FADE", FADE_HOURS + "h"]].map(([l, v], i) => (
+         {[["TOTAL", total], ["THIS WEEK", weekly], ["FADE", FADE_HOURS + "h"]].map(([l, v], i) => (
           <div key={i} style={{ textAlign: "center" }}>
-            <div style={{ color: "#fbb021", fontSize: 16, fontWeight: "bold" }}>{v}</div>
-            <div style={{ color: "#2a6080", fontSize: 9, letterSpacing: 1 }}>{l}</div>
+            <div style={{ color: "#ff9900", fontSize: 16, fontWeight: "bold" }}>{v}</div>
+            <div style={{ color: "#666666", fontSize: 9, letterSpacing: 1 }}>{l}</div>
           </div>
         ))}
       </div>
@@ -1267,12 +1267,12 @@ export default function CellumaTracker() {
         <BodyPanel side="back" {...sharedBodyProps} />
       </div>
 
-      <div style={{
-        fontSize: 9, letterSpacing: 3, color: "#5a9abf", fontFamily: "monospace",
-        marginBottom: 8,
-      }}>
-        HANDS · PALM VIEW
-      </div>
+       <div style={{
+         fontSize: 9, letterSpacing: 3, color: "#0066cc", fontFamily: "monospace",
+         marginBottom: 8,
+       }}>
+         HANDS · PALM VIEW
+       </div>
       <div style={{
         display: "flex", gap: 16, alignItems: "flex-start",
         flexWrap: "wrap", justifyContent: "center", marginBottom: 18,
@@ -1281,12 +1281,12 @@ export default function CellumaTracker() {
         <HandPanel handSide="right" {...sharedBodyProps} />
       </div>
 
-      <div style={{
-        fontSize: 9, letterSpacing: 3, color: "#5a9abf", fontFamily: "monospace",
-        marginBottom: 8,
-      }}>
-        FACE · EARS · NOSE · MOUTH
-      </div>
+       <div style={{
+         fontSize: 9, letterSpacing: 3, color: "#0066cc", fontFamily: "monospace",
+         marginBottom: 8,
+       }}>
+         FACE · EARS · NOSE · MOUTH
+       </div>
       <div style={{
         display: "flex", gap: 12, alignItems: "flex-start",
         flexWrap: "wrap", justifyContent: "center", marginBottom: 18,
@@ -1324,7 +1324,7 @@ export default function CellumaTracker() {
             await deleteSession(session.id);
           }
         }}
-          style={{ padding: "7px 14px", background: "transparent", border: "1px solid rgba(0,100,150,0.5)", borderRadius: 6, color: "#7aa0bb", cursor: "pointer", fontFamily: "monospace" }}>
+           style={{ padding: "7px 14px", background: "transparent", border: "1px solid rgba(0,0,0,0.15)", borderRadius: 6, color: "#0066cc", cursor: "pointer", fontFamily: "monospace" }}>
           CLEAR FADED
         </button>
         <button onClick={async () => {
@@ -1334,17 +1334,17 @@ export default function CellumaTracker() {
             }
           }
         }}
-          style={{ padding: "7px 14px", background: "transparent", border: "1px solid rgba(160,60,60,0.4)", borderRadius: 6, color: "#ff8080", cursor: "pointer", fontFamily: "monospace" }}>
+           style={{ padding: "7px 14px", background: "transparent", border: "1px solid rgba(200,100,100,0.3)", borderRadius: 6, color: "#cc3333", cursor: "pointer", fontFamily: "monospace" }}>
           CLEAR ALL
         </button>
       </div>
 
-      {sessions.length > 0 && (
-        <div style={{ width: "100%", maxWidth: 420, fontSize: 9, color: "#2a6080", letterSpacing: 1, fontFamily: "monospace" }}>
-          <div style={{ marginBottom: 6, borderBottom: "1px solid rgba(0,80,120,0.2)", paddingBottom: 6 }}>
-            <span>RECENT SESSIONS</span>
-            <span style={{ color: "#3a6a8a", textTransform: "none", letterSpacing: 0 }}> tap × to remove</span>
-          </div>
+       {sessions.length > 0 && (
+         <div style={{ width: "100%", maxWidth: 420, fontSize: 9, color: "#666666", letterSpacing: 1, fontFamily: "monospace" }}>
+           <div style={{ marginBottom: 6, borderBottom: "1px solid rgba(0,0,0,0.08)", paddingBottom: 6 }}>
+             <span>RECENT SESSIONS</span>
+             <span style={{ color: "#888888", textTransform: "none", letterSpacing: 0 }}> tap × to remove</span>
+           </div>
           {[...sessions].reverse().slice(0, 10).map((s) => {
             const createdAt = new Date(s.created_at).getTime();
             const hrs = (Date.now() - createdAt) / 3600000;
@@ -1352,16 +1352,16 @@ export default function CellumaTracker() {
             const sDev = DEVICES[s.device];
             return (
               <div key={s.id} style={{ display: "flex", alignItems: "center", padding: "3px 0" }}>
-                <span style={{ color: "#cce0f0", flex: 1, fontWeight: "bold" }}>{sDev.name}</span>
-                <span style={{ width: 110, fontSize: 8 }}>{(s.body_part || "").toUpperCase().replace("-", " ")}</span>
-                <span style={{ color: "#4a8aaa", width: 60, textAlign: "right" }}>{age}</span>
+               <span style={{ color: "#1a1a1a", flex: 1, fontWeight: "bold" }}>{sDev.name}</span>
+                 <span style={{ width: 110, fontSize: 8 }}>{(s.body_part || "").toUpperCase().replace("-", " ")}</span>
+                 <span style={{ color: "#0066cc", width: 60, textAlign: "right" }}>{age}</span>
                 <button
                   onClick={() => deleteSession(s.id)}
                   aria-label="Remove session"
-                  style={{
-                    background: "rgba(160,40,40,0.15)",
-                    border: "1px solid rgba(180,60,60,0.4)",
-                    color: "#ff8080",
+                   style={{
+                     background: "rgba(200,100,100,0.1)",
+                     border: "1px solid rgba(200,100,100,0.3)",
+                     color: "#cc3333",
                     borderRadius: 4,
                     width: 22, height: 22,
                     cursor: "pointer",
