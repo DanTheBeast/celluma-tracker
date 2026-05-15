@@ -1,0 +1,138 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                    CREATE GITHUB REPOSITORY FIRST                          ║
+║                                                                            ║
+║              The repo doesn't exist yet - you need to create it            ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+ERROR YOU GOT:
+  "remote: Repository not found."
+
+WHY:
+  The GitHub repository "celluma-tracker" doesn't exist yet.
+  You need to create it on GitHub.com first.
+
+═══════════════════════════════════════════════════════════════════════════
+
+FIX: CREATE GITHUB REPOSITORY (2 minutes)
+
+1. Go to → https://github.com/new
+2. You should see a form with these fields:
+   - Repository name *
+   - Description
+   - Visibility (Public/Private)
+
+3. Fill in:
+   Repository name: celluma-tracker
+   Description: Red light therapy session tracker with heatmap visualization
+   Visibility: Public (or Private, your choice)
+
+4. Click "Create repository"
+
+5. You'll see a page that says:
+   "Quick setup — if you've done this kind of thing before"
+   
+   Look for this line:
+   https://github.com/danthebeast/celluma-tracker.git
+
+6. Perfect! Now go back to Terminal
+
+═══════════════════════════════════════════════════════════════════════════
+
+THEN RUN THIS IN TERMINAL:
+
+You already have:
+  git config --global user.name "danthebeast" ✓
+  git config --global user.email "danfields5454@gmail.com" ✓
+  cd "/Users/AarraMBP/Desktop/The Prize/Apps/CelluMe" ✓
+
+But you got an error on:
+  git remote add origin https://github.com/danthebeast/celluma-tracker.git
+
+Because origin already exists. So instead run:
+
+  git remote remove origin
+
+Then:
+
+  git remote add origin https://github.com/danthebeast/celluma-tracker.git
+
+Then:
+
+  git push -u origin main
+
+When it asks for password, paste your GitHub token (the ghp_... string).
+
+═══════════════════════════════════════════════════════════════════════════
+
+COMPLETE STEPS TO FIX:
+
+1. Create repo at https://github.com/new (do this now!)
+
+2. In Terminal, run:
+
+   git remote remove origin
+   git remote add origin https://github.com/danthebeast/celluma-tracker.git
+   git push -u origin main
+
+3. When prompted:
+   Username: danthebeast
+   Password: (paste your GitHub token - the long ghp_... string)
+
+4. Wait for it to push...
+
+5. You should see:
+   "Branch 'main' set up to track remote branch 'main' from 'origin'."
+
+6. Then you're done pushing!
+
+═══════════════════════════════════════════════════════════════════════════
+
+NEXT: DEPLOY WITH VERCEL
+
+Once the code is on GitHub:
+
+1. Go to → https://vercel.com
+2. Sign in with GitHub
+3. Click "New Project"
+4. Search for "celluma-tracker"
+5. Click "Import"
+6. Click "Deploy"
+7. Wait 2-3 minutes
+
+Your app will be live!
+
+═══════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING THIS STEP:
+
+Can't see "celluma-tracker" on GitHub?
+  → Make sure you created it
+  → Refresh the page (Cmd+R)
+  → Log out and log back in
+
+Getting "remote: Repository not found" again?
+  → Check the repo URL is correct
+  → Make sure you created the repo on GitHub.com
+  → Use https:// version (not git@github.com)
+
+Still having issues?
+  → Double-check the repo name: celluma-tracker
+  → Make sure it's under your account: github.com/danthebeast/
+  → The URL should be: 
+     https://github.com/danthebeast/celluma-tracker.git
+
+═══════════════════════════════════════════════════════════════════════════
+
+DO THIS NOW:
+
+1. Open browser
+2. Go to https://github.com/new
+3. Create repository named "celluma-tracker"
+4. Come back to Terminal
+5. Run the 3 commands above
+
+You'll be live in 5 minutes!
+
+═══════════════════════════════════════════════════════════════════════════

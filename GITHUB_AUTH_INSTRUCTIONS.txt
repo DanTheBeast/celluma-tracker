@@ -1,0 +1,161 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                    AUTHENTICATE WITH GITHUB                               ║
+║                                                                            ║
+║              Before pushing code, you need to authenticate                 ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+You have two options: Personal Access Token (RECOMMENDED) or SSH Key
+
+═══════════════════════════════════════════════════════════════════════════
+
+OPTION 1: PERSONAL ACCESS TOKEN (Easier, Recommended)
+
+Step 1: Create a GitHub Personal Access Token
+  1. Go to → https://github.com/settings/tokens/new
+  2. Sign in if needed
+  3. Name: "CellumaTracker"
+  4. Expiration: 90 days (or longer)
+  5. Scopes: Check these boxes:
+     ✓ repo (Full control of private repositories)
+     ✓ workflow (Update GitHub Action workflows)
+  6. Scroll down and click "Generate token"
+  7. COPY the token (starts with ghp_)
+  8. Save it somewhere safe!
+
+Step 2: Configure Git to use the token
+  Open Terminal and run:
+
+    git config --global user.name "danthebeast"
+    git config --global user.email "your-email@example.com"
+
+  Replace with your actual email!
+
+Step 3: Try pushing again
+  Run:
+
+    cd "/Users/AarraMBP/Desktop/The Prize/Apps/CelluMe"
+    git push -u origin main
+
+  When prompted for password:
+  - Username: danthebeast
+  - Password: Paste your personal access token (ghp_...)
+
+═══════════════════════════════════════════════════════════════════════════
+
+OPTION 2: SSH KEY (More Secure)
+
+Step 1: Generate SSH key
+  Run in Terminal:
+
+    ssh-keygen -t ed25519 -C "your-email@example.com"
+    # Press Enter for default location
+    # Enter a passphrase (or press Enter for none)
+
+Step 2: Add to GitHub
+  1. Copy your public key:
+       cat ~/.ssh/id_ed25519.pub
+  2. Go to → https://github.com/settings/keys
+  3. Click "New SSH key"
+  4. Paste the key
+  5. Click "Add SSH key"
+
+Step 3: Configure Git
+  Run:
+
+    git config --global user.name "danthebeast"
+    git config --global user.email "your-email@example.com"
+    git remote remove origin
+    git remote add origin git@github.com:danthebeast/celluma-tracker.git
+
+Step 4: Push to GitHub
+  Run:
+
+    git push -u origin main
+
+═══════════════════════════════════════════════════════════════════════════
+
+WHICH OPTION TO CHOOSE?
+
+✅ Personal Access Token:
+   • Easier to set up
+   • Works immediately
+   • Good for beginners
+   • Recommended for this project
+
+SSH Key:
+   • More secure
+   • Better for long-term
+   • More complex setup
+   • Recommended for frequent use
+
+═══════════════════════════════════════════════════════════════════════════
+
+QUICK STEPS (Personal Access Token)
+
+1. Go → https://github.com/settings/tokens/new
+2. Create token with "repo" scope
+3. Copy the token
+4. Run in Terminal:
+
+   git config --global user.name "danthebeast"
+   git config --global user.email "your@email.com"
+
+5. Run:
+
+   cd "/Users/AarraMBP/Desktop/The Prize/Apps/CelluMe"
+   git push -u origin main
+
+6. Enter username: danthebeast
+7. Enter password: (paste your token)
+
+Done!
+
+═══════════════════════════════════════════════════════════════════════════
+
+FIRST TIME SETUP
+
+If this is your first time using git, also run:
+
+  git config --global user.name "danthebeast"
+  git config --global user.email "your.email@gmail.com"
+
+Replace with your actual email!
+
+═══════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING
+
+"fatal: could not read Username for 'https://github.com': Device not configured"
+  → You need to authenticate (follow steps above)
+
+"Repository not found"
+  → Make sure repository exists at:
+     https://github.com/danthebeast/celluma-tracker
+  → Create it if needed
+
+"Permission denied"
+  → Wrong username/token
+  → Create a new token and try again
+
+"Please make sure you have the correct access rights"
+  → Token doesn't have "repo" scope
+  → Create a new token with correct scopes
+
+═══════════════════════════════════════════════════════════════════════════
+
+ONCE YOU'RE AUTHENTICATED
+
+After successfully pushing, you can deploy to Vercel:
+
+1. Go to → https://vercel.com
+2. Sign in with GitHub
+3. Click "New Project"
+4. Search for "celluma-tracker"
+5. Click "Import"
+6. Click "Deploy"
+
+Your app will be live in 2-3 minutes!
+
+═══════════════════════════════════════════════════════════════════════════
